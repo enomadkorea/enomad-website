@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="css/style.css" />
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBguACZB5yr23CNpFUd5q_Wf69JdkG0efQ&libraries=places" async defer></script>
 </head>
 <body>
 
@@ -23,6 +24,7 @@
         <a href="#services">서비스</a>
         <a href="#why">Why Us</a>
         <a href="#process">진행절차</a>
+        <a href="#tools" class="nav-tools"><i class="fas fa-tools"></i> 물류 툴</a>
         <a href="#apply" class="nav-cta">콘솔 신청</a>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
@@ -33,6 +35,7 @@
       <a href="#services" class="mm-link">서비스</a>
       <a href="#why" class="mm-link">Why Us</a>
       <a href="#process" class="mm-link">진행절차</a>
+      <a href="#tools" class="mm-link">물류 툴</a>
       <a href="#apply" class="mm-link mm-cta">콘솔 신청</a>
     </div>
   </header>
@@ -253,6 +256,206 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── TOOLS ───────────────── -->
+  <section id="tools">
+    <div class="section-inner">
+      <div class="section-label">LOGISTICS TOOLS</div>
+      <h2 class="section-title">고객 편의 <span class="highlight">물류 툴</span></h2>
+      <p class="section-desc">견적 문의부터 UPS 운임 계산, 미국 수입 통관 체크까지 한 곳에서</p>
+
+      <!-- 툴 탭 -->
+      <div class="tools-tabs">
+        <button class="tool-tab active" data-tool="quote"><i class="fas fa-file-invoice-dollar"></i> 견적 문의</button>
+        <button class="tool-tab" data-tool="ups"><i class="fas fa-truck"></i> UPS 운임 계산</button>
+        <button class="tool-tab" data-tool="hscode"><i class="fas fa-search"></i> HS Code 통관 체크</button>
+      </div>
+
+      <!-- ── 견적 문의 패널 ── -->
+      <div class="tool-panel active" id="tool-quote">
+        <div class="tool-desc">화물 정보를 입력하시면 담당자가 맞춤 견적을 보내드립니다.</div>
+        <div class="quote-layout">
+          <div class="quote-form-wrap">
+            <form id="quoteForm" novalidate>
+              <input type="hidden" id="q_serviceType" value="해상 콘솔" />
+              <div class="tool-form-tabs">
+                <button type="button" class="tfab active" data-svc="해상 콘솔"><i class="fas fa-ship"></i> 해상 콘솔</button>
+                <button type="button" class="tfab" data-svc="항공 콘솔"><i class="fas fa-plane"></i> 항공 콘솔</button>
+                <button type="button" class="tfab" data-svc="아마존 FBA"><i class="fab fa-amazon"></i> FBA</button>
+                <button type="button" class="tfab" data-svc="중남미 통관"><i class="fas fa-globe-americas"></i> 중남미</button>
+              </div>
+              <div class="tform-grid">
+                <div class="tform-group">
+                  <label><i class="fas fa-building"></i> 업체명 <span class="req">*</span></label>
+                  <input type="text" id="q_company" placeholder="회사명" required />
+                </div>
+                <div class="tform-group">
+                  <label><i class="fas fa-user"></i> 담당자명 <span class="req">*</span></label>
+                  <input type="text" id="q_name" placeholder="성함" required />
+                </div>
+                <div class="tform-group">
+                  <label><i class="fas fa-phone"></i> 연락처 <span class="req">*</span></label>
+                  <input type="tel" id="q_phone" placeholder="010-0000-0000" required />
+                </div>
+                <div class="tform-group">
+                  <label><i class="fas fa-envelope"></i> 이메일 <span class="req">*</span></label>
+                  <input type="email" id="q_email" placeholder="example@company.com" required />
+                </div>
+                <div class="tform-group">
+                  <label><i class="fas fa-map-marker-alt"></i> 출발지</label>
+                  <select id="q_origin">
+                    <option value="한국">🇰🇷 한국</option>
+                    <option value="중국">🇨🇳 중국</option>
+                    <option value="기타">기타</option>
+                  </select>
+                </div>
+                <div class="tform-group">
+                  <label><i class="fas fa-flag-checkered"></i> 목적지</label>
+                  <select id="q_dest">
+                    <option value="미국">🇺🇸 미국</option>
+                    <option value="멕시코">🇲🇽 멕시코</option>
+                    <option value="브라질">🇧🇷 브라질</option>
+                    <option value="칠레">🇨🇱 칠레</option>
+                    <option value="기타 중남미">기타 중남미</option>
+                  </select>
+                </div>
+                <div class="tform-group">
+                  <label><i class="fas fa-box-open"></i> 화물 종류</label>
+                  <select id="q_cargo">
+                    <option value="화장품 (K-Beauty)">💄 화장품</option>
+                    <option value="식품 (K-Food)">🍜 식품</option>
+                    <option value="일반 상품">📦 일반 상품</option>
+                    <option value="기타">기타</option>
+                  </select>
+                </div>
+                <div class="tform-group">
+                  <label><i class="fas fa-weight-hanging"></i> 예상 물량</label>
+                  <input type="text" id="q_weight" placeholder="예: 50kg / 1CBM / 100박스" />
+                </div>
+              </div>
+              <div class="tform-group tform-full">
+                <label><i class="fas fa-comment-dots"></i> 추가 요청사항</label>
+                <textarea id="q_msg" rows="3" placeholder="화물 특이사항, 희망 선적일 등"></textarea>
+              </div>
+              <div class="tform-privacy">
+                <label><input type="checkbox" id="q_privacy" required /> 개인정보 수집 및 이용에 동의합니다 <span class="req">*</span></label>
+              </div>
+              <button type="submit" class="tool-submit-btn"><i class="fas fa-paper-plane"></i> 견적 신청하기</button>
+            </form>
+            <div id="quoteSuccess" class="tool-success" style="display:none;">
+              <i class="fas fa-check-circle"></i>
+              <h4>신청 완료!</h4>
+              <p>영업일 1일 이내 담당자가 연락드립니다 😊</p>
+              <button onclick="document.getElementById('quoteSuccess').style.display='none';document.getElementById('quoteForm').style.display='block'">추가 신청</button>
+            </div>
+          </div>
+          <div class="quote-info-wrap">
+            <div class="qinfo-card">
+              <h5><i class="fas fa-clock"></i> 견적 처리 시간</h5>
+              <p>영업일 기준 <strong>1일 이내</strong> 회신</p>
+            </div>
+            <div class="qinfo-card">
+              <h5><i class="fas fa-won-sign"></i> 운임 가이드</h5>
+              <ul>
+                <li>🚢 해상 LCL: 1CBM $480~</li>
+                <li>✈️ 항공: ₩17,000/KG~</li>
+                <li>📦 3PL 출고: $3/박스~</li>
+              </ul>
+            </div>
+            <div class="qinfo-card">
+              <h5><i class="fas fa-headset"></i> 빠른 문의</h5>
+              <p><i class="fas fa-envelope"></i> park@enomad.co.kr</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── UPS 운임 계산 패널 ── -->
+      <div class="tool-panel" id="tool-ups">
+        <div class="tool-desc">미국 내 UPS Ground 배송 운임을 계산합니다. 출발지 Vernon CA (ZIP 90058) 기준.</div>
+        <div class="ups-layout">
+          <div class="ups-form-wrap">
+            <div class="tform-group">
+              <label><i class="fas fa-map-marker-alt"></i> 수령 주소 또는 ZIP 코드</label>
+              <div class="ups-addr-row">
+                <input type="text" id="ups_address" placeholder="예: 10001 또는 New York, NY" />
+                <button type="button" class="ups-addr-btn" onclick="upsLookupAddress()"><i class="fas fa-search"></i> 조회</button>
+              </div>
+              <div id="ups_addr_result" class="ups-addr-result"></div>
+            </div>
+            <div class="tform-grid">
+              <div class="tform-group">
+                <label><i class="fas fa-home"></i> 배송 유형</label>
+                <select id="ups_type">
+                  <option value="commercial">Commercial (상업지)</option>
+                  <option value="residential">Residential (주거지)</option>
+                </select>
+              </div>
+              <div class="tform-group">
+                <label><i class="fas fa-weight-hanging"></i> 무게 (lbs)</label>
+                <input type="number" id="ups_weight" placeholder="예: 5" min="0.1" step="0.1" value="5" />
+              </div>
+              <div class="tform-group">
+                <label><i class="fas fa-boxes"></i> 박스 수량</label>
+                <input type="number" id="ups_qty" placeholder="1" min="1" value="1" />
+              </div>
+            </div>
+            <button type="button" class="tool-submit-btn" onclick="calcUPS()"><i class="fas fa-calculator"></i> 운임 계산하기</button>
+            <div id="ups_result" class="ups-result" style="display:none;"></div>
+          </div>
+          <div class="ups-info-wrap">
+            <div class="qinfo-card">
+              <h5><i class="fas fa-info-circle"></i> 계산 기준</h5>
+              <ul>
+                <li>출발: Vernon CA 90058</li>
+                <li>UPS Ground Commercial</li>
+                <li>Marche Madison 계약 요율</li>
+                <li>Zone별 자동 계산</li>
+              </ul>
+            </div>
+            <div class="qinfo-card">
+              <h5><i class="fas fa-exclamation-triangle"></i> 유의사항</h5>
+              <p>실제 청구 운임은 치수 무게·서비스 옵션에 따라 달라질 수 있습니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HS Code 통관 체크 패널 ── -->
+      <div class="tool-panel" id="tool-hscode">
+        <div class="tool-desc">제품명을 입력하면 AI가 HS Code를 추정하고, 미국 수입 관세율·FTA·규제를 자동 조회합니다.</div>
+        <div class="hs-layout">
+          <div class="hs-form-wrap">
+            <div class="tform-group">
+              <label><i class="fas fa-search"></i> 제품명 (한국어 또는 영어)</label>
+              <div class="ups-addr-row">
+                <input type="text" id="hs_product" placeholder="예: 면 티셔츠, cotton t-shirt, 화장품 크림" />
+                <button type="button" class="ups-addr-btn" onclick="hsSearch()"><i class="fas fa-search"></i> 조회</button>
+              </div>
+            </div>
+            <div id="hs_result" class="hs-result" style="display:none;"></div>
+          </div>
+          <div class="hs-info-wrap">
+            <div class="qinfo-card">
+              <h5><i class="fas fa-info-circle"></i> 조회 항목</h5>
+              <ul>
+                <li>🔢 HS Code (HTS 8자리)</li>
+                <li>💰 MFN 기본 관세율</li>
+                <li>🇰🇷 한-미 FTA 세율</li>
+                <li>⚠️ Section 301 추가관세</li>
+                <li>📋 FDA/FCC 규제 여부</li>
+              </ul>
+            </div>
+            <div class="qinfo-card">
+              <h5><i class="fas fa-lightbulb"></i> 활용 팁</h5>
+              <p>정확한 제품명 입력 시 더 정확한 결과를 얻을 수 있습니다. 영문명도 지원합니다.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 

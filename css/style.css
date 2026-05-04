@@ -1173,3 +1173,282 @@ input:checked + .slider::before { transform: translateX(22px); }
   .stat strong { font-size: 24px; }
   .section-title { font-size: 24px; }
 }
+
+/* ══════════════════════════════════════
+   LOGISTICS TOOLS SECTION
+══════════════════════════════════════ */
+#tools { background: #f8fafd; padding: 80px 0; }
+
+.nav-tools { color: #2563eb !important; font-weight: 600 !important; }
+.nav-tools i { margin-right: 4px; }
+
+/* 툴 탭 */
+.tools-tabs {
+  display: flex;
+  gap: 10px;
+  margin: 36px 0 0;
+  flex-wrap: wrap;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0;
+}
+.tool-tab {
+  background: none;
+  border: none;
+  padding: 12px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border-radius: 6px 6px 0 0;
+}
+.tool-tab:hover { color: #1a3a6b; background: #f1f5f9; }
+.tool-tab.active { color: #1a3a6b; border-bottom-color: #1a3a6b; background: #fff; }
+
+/* 툴 패널 */
+.tool-panel { display: none; padding: 32px 0 8px; }
+.tool-panel.active { display: block; }
+.tool-desc {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 24px;
+  padding: 12px 16px;
+  background: #eff6ff;
+  border-left: 4px solid #1a3a6b;
+  border-radius: 0 8px 8px 0;
+}
+
+/* 공통 레이아웃 */
+.quote-layout, .ups-layout, .hs-layout {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 28px;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .quote-layout, .ups-layout, .hs-layout { grid-template-columns: 1fr; }
+}
+
+/* 툴 서비스 탭 */
+.tool-form-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.tfab {
+  padding: 8px 14px;
+  border: 2px solid #e2e8f0;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.tfab.active, .tfab:hover { border-color: #1a3a6b; color: #1a3a6b; background: #eff6ff; }
+
+/* 폼 그리드 */
+.tform-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+@media (max-width: 600px) { .tform-grid { grid-template-columns: 1fr; } }
+
+.tform-group { display: flex; flex-direction: column; gap: 5px; }
+.tform-full { margin-bottom: 14px; }
+.tform-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.tform-group input,
+.tform-group select,
+.tform-group textarea {
+  padding: 10px 14px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1e293b;
+  transition: border-color 0.2s;
+  background: #fff;
+  font-family: inherit;
+}
+.tform-group input:focus,
+.tform-group select:focus,
+.tform-group textarea:focus {
+  border-color: #1a3a6b;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(26,58,107,0.08);
+}
+.tform-privacy { font-size: 13px; color: #64748b; margin: 12px 0 16px; }
+.tform-privacy label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
+/* 제출 버튼 */
+.tool-submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #1a3a6b, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+.tool-submit-btn:hover { opacity: 0.92; transform: translateY(-1px); }
+
+/* 성공 메시지 */
+.tool-success {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f0fdf4;
+  border-radius: 12px;
+  border: 1px solid #bbf7d0;
+}
+.tool-success i { font-size: 48px; color: #16a34a; margin-bottom: 12px; display: block; }
+.tool-success h4 { font-size: 20px; color: #166534; margin-bottom: 8px; }
+.tool-success p { color: #15803d; margin-bottom: 16px; }
+.tool-success button {
+  padding: 10px 24px;
+  background: #16a34a;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* 정보 카드 */
+.qinfo-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-bottom: 14px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.qinfo-card h5 {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a3a6b;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.qinfo-card p { font-size: 13px; color: #475569; line-height: 1.6; }
+.qinfo-card ul { list-style: none; padding: 0; }
+.qinfo-card ul li { font-size: 13px; color: #475569; padding: 3px 0; }
+
+/* UPS */
+.ups-addr-row { display: flex; gap: 8px; }
+.ups-addr-row input { flex: 1; }
+.ups-addr-btn {
+  padding: 10px 16px;
+  background: #1a3a6b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.ups-addr-btn:hover { background: #2563eb; }
+.ups-addr-result { font-size: 13px; color: #64748b; margin-top: 6px; min-height: 20px; }
+
+.ups-result {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1.5px solid #1a3a6b;
+}
+.ups-result h4 { font-size: 14px; color: #1a3a6b; margin-bottom: 14px; font-weight: 700; }
+.ups-rate-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 14px;
+}
+.ups-rate-row:last-child { border-bottom: none; }
+.ups-rate-label { color: #374151; }
+.ups-rate-value { font-weight: 700; color: #1a3a6b; font-size: 16px; }
+.ups-rate-total { background: #eff6ff; border-radius: 8px; padding: 12px 14px; }
+.ups-rate-total .ups-rate-value { color: #dc2626; font-size: 20px; }
+
+/* HS Code */
+.hs-result {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1.5px solid #e2e8f0;
+}
+.hs-code-badge {
+  display: inline-block;
+  background: #1a3a6b;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 800;
+  padding: 8px 18px;
+  border-radius: 8px;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.hs-rate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.hs-rate-card {
+  background: #f8fafd;
+  border-radius: 8px;
+  padding: 12px 14px;
+  border: 1px solid #e2e8f0;
+}
+.hs-rate-card .label { font-size: 11px; color: #64748b; font-weight: 600; text-transform: uppercase; margin-bottom: 4px; }
+.hs-rate-card .value { font-size: 17px; font-weight: 800; color: #1a3a6b; }
+.hs-rate-card.fta .value { color: #16a34a; }
+.hs-rate-card.warning .value { color: #dc2626; }
+.hs-checklist { margin-top: 14px; }
+.hs-checklist h5 { font-size: 13px; font-weight: 700; color: #374151; margin-bottom: 8px; }
+.hs-check-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 5px 0;
+  color: #374151;
+}
+.hs-check-item .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-ok { background: #16a34a; }
+.dot-warn { background: #f59e0b; }
+.dot-err { background: #dc2626; }
+.hs-loading { text-align: center; padding: 30px; color: #64748b; font-size: 14px; }
